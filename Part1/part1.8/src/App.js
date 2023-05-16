@@ -1,6 +1,20 @@
 import { useState } from 'react';
 import Header from './components/Header';
 
+const Statistics = props => {
+  let { good, neutral, bad, all, average, positive } = props.data;
+  return (
+    <>
+      <p>good {good}</p>
+      <p>neutral {neutral}</p>
+      <p>bad {bad}</p>
+      <p>all {all}</p>
+      <p>average {all === 0 ? (average = 0) : average}</p>
+      <p>positive {all === 0 ? (positive = 0) : positive}</p>
+    </>
+  );
+};
+
 const App = () => {
   // save clicks of each button to its own state
   const [good, setGood] = useState(0);
@@ -15,6 +29,8 @@ const App = () => {
   let average = (good - bad) / all;
   let positive = (good / all) * 100 + '%';
 
+  const data = { good, neutral, bad, all, average, positive };
+
   return (
     <>
       <Header title="give feedback" />
@@ -22,14 +38,7 @@ const App = () => {
       <button onClick={neutralHandler}>neutral</button>
       <button onClick={badHandler}>bad</button>
       <Header title="statistics" />
-      <div>
-        <p>good {good}</p>
-        <p>neutral {neutral}</p>
-        <p>bad {bad}</p>
-        <p>all {all}</p>
-        <p>average {all === 0 ? (average = 0) : average}</p>
-        <p>positive {all === 0 ? (positive = 0) : positive}</p>
-      </div>
+      <Statistics data={data} />
     </>
   );
 };
