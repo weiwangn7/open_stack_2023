@@ -2,11 +2,12 @@ import React from 'react';
 import personService from '../services/person';
 
 function Persons(props) {
-  const deleteHandler = (e, key) => {
+  const deleteHandler = (e, person) => {
     e.preventDefault();
-    const id = key;
-
-    personService.deletePerson(id).then(returnedPerson => props.setPersons(props.persons.filter(person => person.id !== id)));
+    const id = person.id;
+    if (window.confirm(`Delete ${person.name} ?`)) {
+      personService.deletePerson(id).then(returnedPerson => props.setPersons(props.persons.filter(person => person.id !== id)));
+    }
   };
 
   return (
@@ -14,7 +15,7 @@ function Persons(props) {
       {props.newPersons.map((person, i) => (
         <p key={`${person.name}${i}`}>
           {person.name} : {person.number}
-          <button onClick={event => deleteHandler(event, person.id)} key={person.id}>
+          <button onClick={event => deleteHandler(event, person)} key={person.id}>
             Delete
           </button>
         </p>
