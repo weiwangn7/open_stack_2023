@@ -1,0 +1,8 @@
+.message {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 2px solid rgb(10, 88, 10);
+  font-size: 20px;
+  flood-color: rgb(10, 88, 10);
+}
