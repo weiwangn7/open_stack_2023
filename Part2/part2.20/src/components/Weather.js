@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import countryService from '../services/country';
 
 const Weather = ({ capital, lat, lon }) => {
-  const key = '4b0e94d39e301e5cd24efe9517e66565';
+  const key = process.env.REACT_APP_API_KEY;
   const [weather, setWeather] = useState({});
 
   useEffect(() => {
