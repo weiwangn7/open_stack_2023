@@ -44,7 +44,7 @@ app.get('/api/persons/:id', (req, res) => {
 });
 
 app.delete('api/persons/:id', (req, res) => {
-  const id = 1;
+  const id = Number(req.params.id);
   phonebook = phonebook.filter(person => person.id !== id);
   console.log(id);
 
