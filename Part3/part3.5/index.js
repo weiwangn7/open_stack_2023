@@ -21,6 +21,7 @@ let phonebook = [
     number: '39-23-6423122',
   },
 ];
+
 const express = require('express');
 const app = express();
 
@@ -67,10 +68,9 @@ app.post('/api/persons', (req, res) => {
   }
 
   const person = {
+    id: generateId(),
     name: body.name,
     number: body.number,
-    date: new Date(),
-    id: generateId(),
   };
 
   phonebook = phonebook.concat(person);
