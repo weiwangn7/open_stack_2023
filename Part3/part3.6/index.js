@@ -76,18 +76,13 @@ app.post('/api/persons', (req, res) => {
     });
   }
 
-  console.log('==========>000001', 000001);
-
   const person = {
     id: generateId(),
     name: body.name,
     number: body.number,
   };
-  console.log('==========>000002', 000002);
 
   phonebook = phonebook.concat(person);
-  console.log('==========>000003', 000003);
-
   res.json(person);
 });
 
