@@ -26,14 +26,17 @@ const morgan = require('morgan');
 const app = express();
 const logger = morgan('tiny');
 
+// SHOW PHONEBOOK
 app.get('/api/persons', (req, res) => {
   res.json(phonebook);
 });
 
+// SUMMARY PHONE BOOK INFORMATION
 app.get('/info', (req, res) => {
   res.send(`<p>Phonebook has info for ${phonebook.length} people <br/> ${new Date()}</p>`);
 });
 
+// GET SPECIFIC PERSON'S INFORMATION BY ID
 app.get('/api/persons/:id', (req, res) => {
   const id = Number(req.params.id);
   const person = phonebook.find(person => person.id === id);
@@ -45,6 +48,7 @@ app.get('/api/persons/:id', (req, res) => {
   }
 });
 
+// DELETE SPECIFIC PERSON BY ID
 app.delete('/api/persons/:id', (req, res) => {
   const id = Number(req.params.id);
   phonebook = phonebook.filter(person => person.id !== id);
@@ -53,8 +57,12 @@ app.delete('/api/persons/:id', (req, res) => {
   res.status(204).end();
 });
 
+// CREATE A PERSON
 app.use(express.json());
-app.use(morgan('tiny'));
+morgan.token('person', req => {
+  return JSON.stringify({ name: req.body.name, number: req.body.number });
+});
+app.use(morgan(':method :url :status :res[content-length] - :response-time ms :person'));
 
 const generateId = () => {
   const id = Math.floor(Math.random() * 1000);
@@ -84,6 +92,8 @@ app.post('/api/persons', (req, res) => {
     name: body.name,
     number: body.number,
   };
+
+  // console.log(JSON.stringify()`{name: ${person.name}, number:${person.number}}`);
 
   phonebook = phonebook.concat(person);
   res.json(person);
