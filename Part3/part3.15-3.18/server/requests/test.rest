@@ -1,0 +1,21 @@
+GET http://localhost:3001/api/persons
+
+###Get info
+GET http://localhost:3001/info
+
+###Get by id
+GET http://localhost:3001/api/persons/728
+
+
+###DELETE
+DELETE http://localhost:3001/api/persons/4
+
+
+###POST
+POST http://localhost:3001/api/persons
+Content-Type: application/json
+
+{
+    "name":"fdfvsdh",
+    "number":"6787345676213"
+}
