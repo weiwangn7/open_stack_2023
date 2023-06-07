@@ -1,0 +1,13 @@
+### GET ALL BLOGS
+GET http://localhost:3003/api/blogs
+
+### POST A BLOG
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+
+{
+    "title":"sfgdhsrftgbnsf",
+    "author":"Didier",
+    "url":"adefhsdfrhrftbh",
+    "likes":100
+}
